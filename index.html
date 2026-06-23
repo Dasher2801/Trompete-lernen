@@ -7,8 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1e272e; /* Dunklerer Hintergrund, damit das Leuchten besser wirkt */
-            color: #f5f6fa;
+            background-color: #f0f2f5;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,124 +18,61 @@
         }
 
         body.success {
-            background-color: #1b5231 !important; /* Dunkelgrün bei Erfolg für besseren Kontrast */
+            background-color: #2ecc71 !important;
         }
 
         .container {
-            background: #2f3640;
+            background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
             max-width: 500px;
             width: 100%;
         }
 
         h1 {
-            color: #f5f6fa;
+            color: #2c3e50;
             margin-top: 0;
             font-size: 24px;
         }
 
         .staff-container {
-            background: #ffffff;
+            background: #fff;
             margin: 20px 0;
-            padding: 15px 10px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Der neue 3D-Trompeten-Ventilblock */
-        .trumpet-block {
+        .valves-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            gap: 15px;
-            background: linear-gradient(to bottom, #d4af37, #aa7c11, #8a670f);
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.4);
-            margin: 30px auto;
-            width: fit-content;
-            border: 2px solid #614603;
+            gap: 20px;
+            margin: 25px 0;
         }
 
-        .valve-piston {
+        .valve {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 4px solid #34495e;
+            background-color: #ecf0f1;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            transition: transform 0.1s ease;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* Mechanische Drück-Animation */
-        .valve-piston.active {
-            transform: translateY(12px);
-        }
-
-        /* Ventil-Drücker oben */
-        .valve-cap {
-            width: 46px;
-            height: 22px;
-            background: linear-gradient(135deg, #f0f0f0, #bdc3c7, #7f8c8d);
-            border: 2px solid #333;
-            border-radius: 6px 6px 3px 3px;
-            font-size: 14px;
+            justify-content: center;
+            font-size: 24px;
             font-weight: bold;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+            color: #34495e;
             transition: all 0.1s ease;
-            z-index: 3;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* Verbindungsstange */
-        .valve-stem {
-            width: 12px;
-            height: 18px;
-            background: linear-gradient(to right, #e67e22, #d35400); /* Kupfer/Edelstahl-Look */
-            border-left: 1px solid #aaa;
-            border-right: 1px solid #555;
-            z-index: 2;
-        }
-
-        /* Ventilgehäuse */
-        .valve-casing {
-            width: 52px;
-            height: 90px;
-            background: linear-gradient(to right, #ffeaa7, #d4af37, #aa7c11, #614603);
-            border: 1px solid #523b02;
-            border-radius: 4px;
-            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.3), 0 4px 6px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        /* Individuelle LED-Leuchteffekte aus deinem Bild */
-        #valve1.active .valve-cap {
-            background: #ff3b30;
-            border-color: #ff0000;
-            color: #fff;
-            box-shadow: 0 0 25px #ff3b30, inset 0 0 8px #fff;
-            text-shadow: 0 0 5px #fff;
-        }
-
-        #valve2.active .valve-cap {
-            background: #4cd964;
-            border-color: #00ff00;
-            color: #fff;
-            box-shadow: 0 0 25px #4cd964, inset 0 0 8px #fff;
-            text-shadow: 0 0 5px #fff;
-        }
-
-        #valve3.active .valve-cap {
-            background: #007aff;
-            border-color: #0055ff;
-            color: #fff;
-            box-shadow: 0 0 25px #007aff, inset 0 0 8px #fff;
-            text-shadow: 0 0 5px #fff;
+        .valve.active {
+            background-color: #e74c3c;
+            color: white;
+            transform: translateY(4px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .btn {
@@ -148,20 +84,15 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.2s;
         }
 
         .btn:hover {
             background-color: #2980b9;
         }
-        
-        .btn:active {
-            transform: scale(0.98);
-        }
 
         .instructions {
-            color: #a4b0be;
+            color: #7f8c8d;
             font-size: 14px;
             margin-top: 20px;
             line-height: 1.5;
@@ -178,8 +109,8 @@
 <body>
 
 <div class="container">
-    <h1>Trompeten-Grifftrainer PRO</h1>
-    <p style="color: #a4b0be; margin: 0;">Tonumfang: Ges bis C'''</p>
+    <h1>Trompeten-Grifftrainer (Chromatisch)</h1>
+    <p>Tonumfang: Ges bis C'''</p>
     
     <div class="staff-container">
         <svg width="400" height="200" id="staff" viewBox="0 0 400 200">
@@ -191,28 +122,16 @@
             
             <g id="ledger-lines"></g>
             
-            <text id="accidental" x="165" y="0" font-size="38" font-family="serif" fill="black" text-anchor="middle" dominant-baseline="central"></text>
+            <text id="accidental" x="165" y="0" font-size="36" font-family="serif" fill="black" text-anchor="middle" dominant-baseline="central"></text>
 
             <ellipse id="note" cx="200" cy="0" rx="12" ry="8" fill="black"/>
         </svg>
     </div>
 
-    <div class="trumpet-block">
-        <div id="valve1" class="valve-piston" onclick="toggleValve(1)">
-            <div class="valve-cap">1</div>
-            <div class="valve-stem"></div>
-            <div class="valve-casing"></div>
-        </div>
-        <div id="valve2" class="valve-piston" onclick="toggleValve(2)">
-            <div class="valve-cap">2</div>
-            <div class="valve-stem"></div>
-            <div class="valve-casing"></div>
-        </div>
-        <div id="valve3" class="valve-piston" onclick="toggleValve(3)">
-            <div class="valve-cap">3</div>
-            <div class="valve-stem"></div>
-            <div class="valve-casing"></div>
-        </div>
+    <div class="valves-container">
+        <div id="valve1" class="valve">1</div>
+        <div id="valve2" class="valve">2</div>
+        <div id="valve3" class="valve">3</div>
     </div>
 
     <button class="btn" onclick="checkAnswer()">Überprüfen (Enter)</button>
@@ -220,13 +139,14 @@
     <div class="feedback" id="feedbackField"></div>
 
     <div class="instructions">
-        <b>Steuerung:</b> Tasten <b>1, 2, 3</b> oder Klicken zum Greifen | <b>0</b> zum Öffnen | <b>Enter</b> zum Prüfen
+        <b>Steuerung:</b> Tasten <b>1, 2, 3</b> zum Greifen | <b>0</b> zum Öffnen | <b>Enter</b> zum Prüfen
     </div>
 </div>
 
 <script>
-    // Chromatische Töne von Ges bis C3 (notiert in B-Stimmung)
+
     const notesPool = [
+
         { name: "Fis (unter c1)", y: 155, accidental: "♯", fingering: "123" },
         { name: "Ges (unter c1)", y: 147.5, accidental: "♭", fingering: "123" },
         { name: "G (unter c1)", y: 147.5, accidental: "", fingering: "13" },
@@ -236,6 +156,7 @@
         { name: "Ais (unter c1)", y: 140, accidental: "♯", fingering: "1" },
         { name: "B (unter c1)", y: 132.5, accidental: "♭", fingering: "1" },
         { name: "H (unter c1)", y: 132.5, accidental: "", fingering: "2" },
+
         { name: "C' (c1)", y: 125, accidental: "", fingering: "0" },
         { name: "Cis' (cis1)", y: 125, accidental: "♯", fingering: "123" },
         { name: "Des' (des1)", y: 117.5, accidental: "♭", fingering: "123" },
@@ -253,6 +174,7 @@
         { name: "Ais' (ais1)", y: 87.5, accidental: "♯", fingering: "1" },
         { name: "B' (b1)", y: 80, accidental: "♭", fingering: "1" },
         { name: "H' (h1)", y: 80, accidental: "", fingering: "2" },
+        
         { name: "C'' (c2)", y: 72.5, accidental: "", fingering: "0" },
         { name: "Cis'' (cis2)", y: 72.5, accidental: "♯", fingering: "12" },
         { name: "Des'' (des2)", y: 65, accidental: "♭", fingering: "12" },
@@ -289,7 +211,6 @@
     });
 
     function toggleValve(num) {
-        if (isCorrectState) return;
         userValves[num] = !userValves[num];
         document.getElementById(`valve${num}`).classList.toggle('active', userValves[num]);
     }
@@ -303,39 +224,50 @@
 
     function drawLedgerLines(y) {
         const container = document.getElementById('ledger-lines');
-        container.innerHTML = '';
+        container.innerHTML = ''; // Vorherige Linien löschen
+
+
         if (y >= 125) {
-            for (let ly = 125; ly <= y + 1; ly += 15) createLineElement(ly);
+            for (let ly = 125; ly <= y + 1; ly += 15) {
+                createLineElement(ly);
+            }
         }
+
         if (y <= 35) {
-            for (let ly = 35; ly >= y - 1; ly -= 15) createLineElement(ly);
+            for (let ly = 35; ly >= y - 1; ly -= 15) {
+                createLineElement(ly);
+            }
         }
     }
 
     function createLineElement(y) {
         const container = document.getElementById('ledger-lines');
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", "170"); line.setAttribute("y1", y);
-        line.setAttribute("x2", "230"); line.setAttribute("y2", y);
-        line.setAttribute("stroke", "black"); line.setAttribute("stroke-width", "2");
+        line.setAttribute("x1", "170");
+        line.setAttribute("y1", y);
+        line.setAttribute("x2", "230");
+        line.setAttribute("y2", y);
+        line.setAttribute("stroke", "black");
+        line.setAttribute("stroke-width", "2");
         container.appendChild(line);
     }
 
     function pickNewNote() {
         const randomIndex = Math.floor(Math.random() * notesPool.length);
         currentNote = notesPool[randomIndex];
-        
+     
         const noteEl = document.getElementById('note');
         noteEl.setAttribute('cy', currentNote.y);
         noteEl.setAttribute('transform', `rotate(-15 200 ${currentNote.y})`);
-        
+
         const accEl = document.getElementById('accidental');
         accEl.textContent = currentNote.accidental;
-        accEl.setAttribute('y', currentNote.y - 2); // Feinjustierung Höhe Vorzeichen
+        accEl.setAttribute('y', currentNote.y);
         
         drawLedgerLines(currentNote.y);
 
         document.getElementById('feedbackField').innerText = "";
+        document.getElementById('feedbackField').style.color = "black";
         resetValves();
         isCorrectState = false;
     }
@@ -350,13 +282,14 @@
 
     function checkAnswer() {
         if (isCorrectState) return;
+
         const userAnswer = getUserFingeringString();
         
         if (userAnswer === currentNote.fingering) {
             isCorrectState = true;
             document.body.classList.add('success');
             document.getElementById('feedbackField').innerText = `Richtig! Das ist ${currentNote.name}`;
-            document.getElementById('feedbackField').style.color = "#2ecc71";
+            document.getElementById('feedbackField').style.color = "#16a085";
             
             playTrumpetSignal();
 
@@ -366,7 +299,7 @@
             }, 1800);
         } else {
             document.getElementById('feedbackField').innerText = "Leider falsch, versuch es nochmal!";
-            document.getElementById('feedbackField').style.color = "#e74c3c";
+            document.getElementById('feedbackField').style.color = "#c0392b";
         }
     }
 
@@ -377,7 +310,7 @@
         const now = ctx.currentTime;
         
         const notes = [392.00, 523.25, 659.25, 783.99]; 
-        const duration = 0.14; 
+        const duration = 0.15; 
 
         notes.forEach((freq, index) => {
             const startTime = now + (index * duration);
@@ -389,7 +322,7 @@
             osc.frequency.setValueAtTime(freq, startTime);
 
             filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(1300, startTime);
+            filter.frequency.setValueAtTime(1200, startTime);
 
             gainNode.gain.setValueAtTime(0, startTime);
             gainNode.gain.linearRampToValueAtTime(0.2, startTime + 0.02);
